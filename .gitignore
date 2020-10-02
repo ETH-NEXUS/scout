@@ -79,3 +79,4 @@ scripts/local
 # Additions
 *.ped
 *.vcf
+Pipfile.lock

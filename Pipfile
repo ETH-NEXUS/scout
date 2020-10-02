@@ -1,0 +1,41 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+beautifulsoup4 = "*"
+"path.py" = "*"
+coloredlogs = "*"
+livereload = "*"
+python-dateutil = "*"
+pymongo = "<3.7"
+pathlib = "*"
+click = "*"
+flask-ldap3-login = "*"
+cyvcf2 = "<0.10.0"
+intervaltree = "==3.0.2"
+tabulate = "*"
+Werkzeug = "*"
+Flask = ">=0.10"
+Flask-DebugToolbar = "*"
+Flask-Bootstrap = "*"
+Flask-Markdown = "*"
+Flask-WTF = "*"
+Flask-Mail = "*"
+Flask-WeasyPrint = "*"
+query_phenomizer = "*"
+Flask-Babel = "*"
+WeasyPrint = "==0.42.3"
+XlsxWriter = "*"
+Authlib = "*"
+Flask-Login = "*"
+PyYAML = ">=5.1"
+ped_parser = "*"
+Cython = "*"
+scout-browser = {editable = true, path = "."}
+
+[requires]
+python_version = "3.8"
