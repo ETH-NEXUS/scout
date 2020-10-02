@@ -75,3 +75,7 @@ scripts/local
 # Emacs (Just so I don't have to see them green in Atom ;-)
 *~
 *#
+
+# Additions
+*.ped
+*.vcf

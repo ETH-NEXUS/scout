@@ -56,7 +56,16 @@
             <tr>
               <th style="width:3%"></th>
               <th title="Rank position">Rank</th>
+              <th>Gene</th>
+              <th>Chr pos</th>
+              <th>Type</th>
+              <th data-toggle="tooltip" data-placement="top" title="Tumor alt. AF. &#013; Alt. allele count | Ref. allele count">Tumor</th>
+              <th style="width:18%">Consequence</th>
+              <th>Tier</th>
+              <th>ExAC</th>
               <th style="width:20%">Gene:Transcript:Exon:HGVS</th>
+
+              <!-- <th style="width:20%">Gene:Transcript:Exon:HGVS</th>
               <th>Tier</th>
               <th>Score</th>
               <th>Gene</th>
@@ -65,7 +74,7 @@
               <th>Type</th>
               <th style="width:18%">Consequence</th>
               <th data-toggle="tooltip" data-placement="top" title="Tumor alt. AF. &#013; Alt. allele count | Ref. allele count">Tumor</th>
-              <th data-toggle="tooltip" data-placement="top" title="Normal alt. AF. &#013; Alt. allele count | Ref. allele count">Normal</th>
+              <th data-toggle="tooltip" data-placement="top" title="Normal alt. AF. &#013; Alt. allele count | Ref. allele count">Normal</th> -->
             </tr>
       </thead>
       <tbody>
@@ -79,7 +88,28 @@
           {% endif %}
             <td><input type="checkbox" value="{{variant._id}}" name="dismiss" onclick="enableDismiss()"></td>
             <td class="text-left">{{cell_rank(variant, institute, case, form, manual_rank_options)}}</td>
+
+            <td>{{ gene_cell(variant) }}</td>
+            <td>{{ position_cell(variant) }}</td>
+            <td>{{ variant.sub_category }}</td>
+            <td>{{ allele_cell(variant.normal or {}) }}</td>
             <td>
+              {% for annotation in variant.functional_annotations %}
+              <div>{{ annotation }}</div>
+              {% endfor %}
+            </td>
+            <td>{{ tier_cell(variant, manual_rank_options, cancer_tier_options) }}</td>
+            <td class="text-right">{{ frequency_cell(variant) }}</td>
+            <td>
+              <a href="{{ url_for('variant.variant', institute_id=institute._id, case_name=case.display_name,
+                                              variant_id=variant._id, cancer='yes') }}">
+                {% for annotation in variant.canonical_transcripts %}
+                <div>{{ annotation }}</div>
+                {% endfor %}
+              </a>
+            </td>
+
+            <!-- <td>
               <a href="{{ url_for('variant.variant', institute_id=institute._id, case_name=case.display_name,
                                   variant_id=variant._id, cancer='yes') }}">
               {% for annotation in variant.canonical_transcripts %}
@@ -99,7 +129,7 @@
               {% endfor %}
             </td>
             <td>{{ allele_cell(variant.tumor or {}) }}</td>
-            <td>{{ allele_cell(variant.normal or {}) }}</td>
+            <td>{{ allele_cell(variant.normal or {}) }}</td> -->
           </tr>
         {% endfor %}
       </tbody>
